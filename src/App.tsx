@@ -26,22 +26,71 @@ interface StatusFeedback {
   message: string;
 }
 
+const STORAGE_KEY = 'sonochart_studio_state_v1';
+
+interface PersistedStudioState {
+  dataset: ChartDataset | null;
+  rawInputText: string;
+  customTitle: string;
+  chartType: ChartType;
+  scale: MusicalScale;
+  visionMode: VisionMode;
+  highContrast: boolean;
+  tactilePatternsEnabled: boolean;
+}
+
+function loadPersistedState(): Partial<PersistedStudioState> {
+  if (typeof window === 'undefined') return {};
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY);
+    if (!raw) return {};
+    return JSON.parse(raw) as Partial<PersistedStudioState>;
+  } catch {
+    return {};
+  }
+}
+
 export const App: React.FC = () => {
-  const [dataset, setDataset] = useState<ChartDataset | null>(PRESET_DATASETS[0]);
-  const [rawInputText, setRawInputText] = useState<string>(PRESET_DATASETS[0].rawCsv);
-  const [customTitle, setCustomTitle] = useState<string>(PRESET_DATASETS[0].title);
+  const initial = useMemo(() => loadPersistedState(), []);
+
+  const [dataset, setDataset] = useState<ChartDataset | null>(
+    initial.dataset !== undefined ? initial.dataset : PRESET_DATASETS[0]
+  );
+  const [rawInputText, setRawInputText] = useState<string>(
+    initial.rawInputText !== undefined ? initial.rawInputText : PRESET_DATASETS[0].rawCsv
+  );
+  const [customTitle, setCustomTitle] = useState<string>(
+    initial.customTitle !== undefined ? initial.customTitle : PRESET_DATASETS[0].title
+  );
   const [parseErrors, setParseErrors] = useState<ParseValidationError[]>([]);
   const [cleanedCsvSuggestion, setCleanedCsvSuggestion] = useState<string | undefined>(
     undefined
   );
 
-  const [chartType, setChartType] = useState<ChartType>('multi-bar');
-  const [scale, setScale] = useState<MusicalScale>('pentatonic');
+  const [chartType, setChartType] = useState<ChartType>(initial.chartType ?? 'multi-bar');
+  const [scale, setScale] = useState<MusicalScale>(initial.scale ?? 'pentatonic');
   const [tempoMs, setTempoMs] = useState<number>(280);
-  const [visionMode, setVisionMode] = useState<VisionMode>('normal');
-  const [highContrast, setHighContrast] = useState<boolean>(false);
-  const [tactilePatternsEnabled, setTactilePatternsEnabled] = useState<boolean>(true);
+  const [visionMode, setVisionMode] = useState<VisionMode>(initial.visionMode ?? 'normal');
+  const [highContrast, setHighContrastState] = useState<boolean>(
+    initial.highContrast ?? false
+  );
+  const [tactilePatternsEnabled, setTactilePatternsEnabled] = useState<boolean>(
+    initial.tactilePatternsEnabled ?? true
+  );
   const [playAllSeriesHarmony, setPlayAllSeriesHarmony] = useState<boolean>(true);
+
+  const applyHighContrast = (nextVal: boolean | ((prev: boolean) => boolean)) => {
+    setHighContrastState((prev) => {
+      const resolved = typeof nextVal === 'function' ? nextVal(prev) : nextVal;
+      if (typeof document !== 'undefined') {
+        document.documentElement.setAttribute(
+          'data-high-contrast',
+          resolved ? 'true' : 'false'
+        );
+      }
+      return resolved;
+    });
+  };
 
   const [activePointIndex, setActivePointIndex] = useState<number>(0);
   const [activeSeriesIndex, setActiveSeriesIndex] = useState<number>(0);
@@ -61,6 +110,34 @@ export const App: React.FC = () => {
       highContrast ? 'true' : 'false'
     );
   }, [highContrast]);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      const toSave: PersistedStudioState = {
+        dataset,
+        rawInputText,
+        customTitle,
+        chartType,
+        scale,
+        visionMode,
+        highContrast,
+        tactilePatternsEnabled,
+      };
+      window.localStorage.setItem(STORAGE_KEY, JSON.stringify(toSave));
+    } catch {
+      // Ignore storage quota errors
+    }
+  }, [
+    dataset,
+    rawInputText,
+    customTitle,
+    chartType,
+    scale,
+    visionMode,
+    highContrast,
+    tactilePatternsEnabled,
+  ]);
 
   const summary = useMemo(() => {
     if (!dataset) return null;
@@ -177,7 +254,7 @@ export const App: React.FC = () => {
         togglePlayback();
       } else if (e.key === 'c' || e.key === 'C') {
         e.preventDefault();
-        setHighContrast((prev) => !prev);
+        applyHighContrast((prev) => !prev);
       }
     };
     window.addEventListener('keydown', handleKeyDown);
@@ -387,7 +464,7 @@ export const App: React.FC = () => {
             type="button"
             className="btn"
             data-testid="btn-toggle-high-contrast"
-            onClick={() => setHighContrast((prev) => !prev)}
+            onClick={() => applyHighContrast((prev) => !prev)}
             aria-pressed={highContrast}
           >
             {highContrast ? 'High-Contrast: ON (C)' : 'High-Contrast Mode (C)'}

@@ -1,0 +1,35 @@
+country,income,health,population,region
+Afghanistan,1925,57.63,32526562,south_asia
+Albania,10620,76,2896679,europe_central_asia
+Algeria,13434,76.5,39666519,middle_east_north_africa
+Andorra,46577,84.1,70473,europe_central_asia
+Angola,7615,61,25021974,sub_saharan_africa
+Antigua and Barbuda,21049,75.2,91818,america
+Argentina,17344,76.2,43416755,america
+Armenia,7763,74.4,3017712,europe_central_asia
+Australia,44056,81.8,23968973,east_asia_pacific
+Austria,44401,81,8544586,europe_central_asia
+Azerbaijan,16986,72.9,9753968,europe_central_asia
+Bahamas,22818,72.3,388019,america
+Bahrain,44138,79.2,1377237,middle_east_north_africa
+Bangladesh,3161,70.1,160995642,south_asia
+Barbados,12984,75.8,284215,america
+Belarus,17415,70.4,9495826,europe_central_asia
+Belgium,41240,80.4,11299192,europe_central_asia
+Belize,8501,70,359287,america
+Benin,1830,65.5,10879829,sub_saharan_africa
+Bhutan,7983,70.2,774830,south_asia
+Bolivia,6295,72.3,10724705,america
+Bosnia and Herzegovina,9833,77.9,3810416,europe_central_asia
+Botswana,17196,66.4,2262485,sub_saharan_africa
+Brazil,15441,75.6,207847528,america
+Brunei,73003,78.7,423188,east_asia_pacific
+Bulgaria,16371,74.9,7149787,europe_central_asia
+Burkina Faso,1654,62.8,18105570,sub_saharan_africa
+Burundi,777,60.4,11178921,sub_saharan_africa
+Cambodia,3267,68.4,15577899,east_asia_pacific
+Cameroon,2897,59.5,23344179,sub_saharan_africa
+Canada,43294,81.7,35939927,america
+Cape Verde,6514,74.6,520502,sub_saharan_africa
+Central African Republic,599,53.8,4900274,sub_saharan_africa
+Chad,2191,57.7,14037472,sub_saharan_africa

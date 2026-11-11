@@ -102,6 +102,14 @@ function renderPatternDef(id: string, patternType: PatternId, colorHex: string, 
   );
 }
 
+function formatCompactTick(val: number): string {
+  const abs = Math.abs(val);
+  if (abs >= 1e9) return `${(val / 1e9).toFixed(2).replace(/\.00$/, '')}B`;
+  if (abs >= 1e6) return `${(val / 1e6).toFixed(2).replace(/\.00$/, '')}M`;
+  if (abs >= 1e4) return `${(val / 1e3).toFixed(1).replace(/\.0$/, '')}K`;
+  return String(Math.round(val * 100) / 100);
+}
+
 export const TactileChartCanvas: React.FC<TactileChartCanvasProps> = ({
   dataset,
   chartType,
@@ -199,10 +207,10 @@ export const TactileChartCanvas: React.FC<TactileChartCanvasProps> = ({
                 y={y + 4}
                 textAnchor="end"
                 fill={axisHex}
-                fontSize="12"
+                fontSize="11.5"
                 fontFamily="IBM Plex Mono, monospace"
               >
-                {tv}
+                {formatCompactTick(tv)}
                 {dataset.yAxisUnit && idx === tickValues.length - 1 ? ` ${dataset.yAxisUnit}` : ''}
               </text>
             </g>
@@ -386,7 +394,17 @@ export const TactileChartCanvas: React.FC<TactileChartCanvasProps> = ({
         {dataset.labels.map((lbl, idx) => {
           const cx = getCenterX(idx);
           const isCurrent = idx === activePointIndex;
-          const shortLbl = lbl.length > 12 ? lbl.slice(0, 11) + '…' : lbl;
+          const maxLabelLen = Math.max(...dataset.labels.map((l) => l.length));
+          const stride =
+            numPoints > 18 ? 3 : numPoints > 11 && maxLabelLen > 5 ? 2 : 1;
+          const showText =
+            isCurrent ||
+            stride === 1 ||
+            idx % stride === 0 ||
+            idx === numPoints - 1;
+          const maxChars = stride > 1 ? 10 : numPoints > 10 ? 7 : 12;
+          const shortLbl =
+            lbl.length > maxChars ? lbl.slice(0, maxChars - 1) + '…' : lbl;
           return (
             <g
               key={`xlabel-${idx}`}
@@ -401,17 +419,19 @@ export const TactileChartCanvas: React.FC<TactileChartCanvasProps> = ({
                 stroke={axisHex}
                 strokeWidth="1.5"
               />
-              <text
-                x={cx}
-                y={padTop + plotH + 22}
-                textAnchor="middle"
-                fill={isCurrent ? playheadHex : axisHex}
-                fontSize="11.5"
-                fontWeight={isCurrent ? '700' : '500'}
-                fontFamily="IBM Plex Mono, monospace"
-              >
-                {shortLbl}
-              </text>
+              {showText && (
+                <text
+                  x={cx}
+                  y={padTop + plotH + 22}
+                  textAnchor="middle"
+                  fill={isCurrent ? playheadHex : axisHex}
+                  fontSize="11"
+                  fontWeight={isCurrent ? '700' : '500'}
+                  fontFamily="IBM Plex Mono, monospace"
+                >
+                  {shortLbl}
+                </text>
+              )}
             </g>
           );
         })}
@@ -419,8 +439,18 @@ export const TactileChartCanvas: React.FC<TactileChartCanvasProps> = ({
         {/* Embedded Legend Strip inside SVG so standalone SVG export is self-explanatory */}
         <g transform={`translate(${padLeft}, ${height - 18})`}>
           {dataset.series.map((s, idx) => {
-            const offsetX = idx * 340;
+            const legendSlotW = Math.min(
+              320,
+              Math.floor(plotW / Math.max(1, dataset.series.length))
+            );
+            const offsetX = idx * legendSlotW;
             const colorHex = resolvedSeriesColors[idx];
+            const rawLegendText = `${s.name} (${s.unit || 'val'}) — ${s.patternId}`;
+            const maxLegendChars = Math.max(18, Math.floor(legendSlotW / 7.2));
+            const legendText =
+              rawLegendText.length > maxLegendChars
+                ? rawLegendText.slice(0, maxLegendChars - 1) + '…'
+                : rawLegendText;
             return (
               <g
                 key={`legend-${s.id}`}
@@ -443,11 +473,11 @@ export const TactileChartCanvas: React.FC<TactileChartCanvasProps> = ({
                   x="24"
                   y="-1"
                   fill={axisHex}
-                  fontSize="12"
+                  fontSize="11.5"
                   fontWeight={idx === activeSeriesIndex ? '700' : '500'}
                   fontFamily="Space Grotesk, sans-serif"
                 >
-                  {s.name} ({s.unit || 'val'}) — {s.patternId}
+                  {legendText}
                 </text>
               </g>
             );

@@ -40,6 +40,11 @@ export function generateStandaloneAccessibleHtml(params: {
     })
     .join('\n          ');
 
+  const safeJsonPoints = JSON.stringify(telemetryPoints)
+    .replace(/</g, '\\u003c')
+    .replace(/>/g, '\\u003e');
+  const safeSvgMarkup = svgMarkup.replace(/<script[\s\S]*?>[\s\S]*?<\/script>/gi, '');
+
   const tableHeadersHtml = dataset.series
     .map((s) => `<th scope="col">${escapeHtml(s.name)}${s.unit ? ` (${escapeHtml(s.unit)})` : ''}</th>`)
     .join('');
@@ -153,7 +158,7 @@ export function generateStandaloneAccessibleHtml(params: {
     </div>
 
     <figure style="margin:0;" aria-describedby="w3c-summary">
-      ${svgMarkup}
+      ${safeSvgMarkup}
       <figcaption id="w3c-summary" style="margin-top:12px;font-size:14px;">
         <strong>W3C Complex Image Summary:</strong> ${escapeHtml(summary.w3cLongDescription)}
       </figcaption>
@@ -178,7 +183,7 @@ export function generateStandaloneAccessibleHtml(params: {
 
   <script>
     (function() {
-      const points = ${JSON.stringify(telemetryPoints)};
+      const points = ${safeJsonPoints};
       let idx = 0;
       let timer = null;
       const readout = document.getElementById('live-readout');

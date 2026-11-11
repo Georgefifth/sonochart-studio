@@ -1,0 +1,196 @@
+{
+  "base": "https://georgefifth.github.io/sonochart-studio/",
+  "browser": "firefox",
+  "headed": false,
+  "startedAt": "2026-11-11T13:39:28.150Z",
+  "finishedAt": "2026-11-11T13:39:35.233Z",
+  "summary": {
+    "total": 14,
+    "pass": 14,
+    "fail": 0
+  },
+  "results": [
+    {
+      "viewport": "desktop",
+      "id": "p0-landing-and-empty-state",
+      "title": "Landing page renders, Empty Workspace state works, and preset recovery restores studio",
+      "status": "pass",
+      "ms": 1097,
+      "error": null,
+      "errors": [],
+      "warnings": [],
+      "screenshots": [
+        "evidence/stage-3-qa/screens/p0-landing-and-empty-state-landing-desktop.png",
+        "evidence/stage-3-qa/screens/p0-landing-and-empty-state-empty-state-desktop.png"
+      ]
+    },
+    {
+      "viewport": "desktop",
+      "id": "p0-core-multimodal-scrub-and-sonification",
+      "title": "Switch preset, scrub via buttons and keyboard arrows, and verify ARIA live readout & audio telemetry",
+      "status": "pass",
+      "ms": 274,
+      "error": null,
+      "errors": [],
+      "warnings": [],
+      "screenshots": [
+        "evidence/stage-3-qa/screens/p0-core-multimodal-scrub-and-sonification-scrubbed-point-12-desktop.png"
+      ]
+    },
+    {
+      "viewport": "desktop",
+      "id": "p0-export-4-layer-bundle",
+      "title": "Export standalone WCAG HTML widget, 16-bit PCM WAV track, tactile SVG, and JSON audit report",
+      "status": "pass",
+      "ms": 395,
+      "error": null,
+      "errors": [],
+      "warnings": [],
+      "screenshots": [
+        "evidence/stage-3-qa/screens/p0-export-4-layer-bundle-exports-verified-desktop.png"
+      ]
+    },
+    {
+      "viewport": "desktop",
+      "id": "p1-invalid-csv-and-auto-clean-recovery",
+      "title": "Detect malformed CSV lines/columns and recover in 1 click via Auto-Clean Invalid Rows",
+      "status": "pass",
+      "ms": 372,
+      "error": null,
+      "errors": [],
+      "warnings": [],
+      "screenshots": [
+        "evidence/stage-3-qa/screens/p1-invalid-csv-and-auto-clean-recovery-invalid-csv-error-desktop.png",
+        "evidence/stage-3-qa/screens/p1-invalid-csv-and-auto-clean-recovery-auto-cleaned-recovery-desktop.png"
+      ]
+    },
+    {
+      "viewport": "desktop",
+      "id": "p1-vision-modes-and-high-contrast-toggle",
+      "title": "Toggle Low-Vision High-Contrast (C key), CVD simulator modes, and chart geometries",
+      "status": "pass",
+      "ms": 230,
+      "error": null,
+      "errors": [],
+      "warnings": [],
+      "screenshots": [
+        "evidence/stage-3-qa/screens/p1-vision-modes-and-high-contrast-toggle-high-contrast-mode-desktop.png"
+      ]
+    },
+    {
+      "viewport": "desktop",
+      "id": "p1-custom-json-persistence-after-reload",
+      "title": "Author a custom JSON dataset and keep state across browser reload",
+      "status": "pass",
+      "ms": 348,
+      "error": null,
+      "errors": [],
+      "warnings": [],
+      "screenshots": [
+        "evidence/stage-3-qa/screens/p1-custom-json-persistence-after-reload-persisted-after-reload-desktop.png"
+      ]
+    },
+    {
+      "viewport": "desktop",
+      "id": "p2-responsive-and-touch-targets",
+      "title": "Verify zero horizontal overflow and >=44px touch targets on primary controls",
+      "status": "pass",
+      "ms": 98,
+      "error": null,
+      "errors": [],
+      "warnings": [],
+      "screenshots": []
+    },
+    {
+      "viewport": "mobile",
+      "id": "p0-landing-and-empty-state",
+      "title": "Landing page renders, Empty Workspace state works, and preset recovery restores studio",
+      "status": "pass",
+      "ms": 606,
+      "error": null,
+      "errors": [],
+      "warnings": [],
+      "screenshots": [
+        "evidence/stage-3-qa/screens/p0-landing-and-empty-state-landing-mobile.png",
+        "evidence/stage-3-qa/screens/p0-landing-and-empty-state-empty-state-mobile.png"
+      ]
+    },
+    {
+      "viewport": "mobile",
+      "id": "p0-core-multimodal-scrub-and-sonification",
+      "title": "Switch preset, scrub via buttons and keyboard arrows, and verify ARIA live readout & audio telemetry",
+      "status": "pass",
+      "ms": 314,
+      "error": null,
+      "errors": [],
+      "warnings": [],
+      "screenshots": [
+        "evidence/stage-3-qa/screens/p0-core-multimodal-scrub-and-sonification-scrubbed-point-12-mobile.png"
+      ]
+    },
+    {
+      "viewport": "mobile",
+      "id": "p0-export-4-layer-bundle",
+      "title": "Export standalone WCAG HTML widget, 16-bit PCM WAV track, tactile SVG, and JSON audit report",
+      "status": "pass",
+      "ms": 459,
+      "error": null,
+      "errors": [],
+      "warnings": [],
+      "screenshots": [
+        "evidence/stage-3-qa/screens/p0-export-4-layer-bundle-exports-verified-mobile.png"
+      ]
+    },
+    {
+      "viewport": "mobile",
+      "id": "p1-invalid-csv-and-auto-clean-recovery",
+      "title": "Detect malformed CSV lines/columns and recover in 1 click via Auto-Clean Invalid Rows",
+      "status": "pass",
+      "ms": 431,
+      "error": null,
+      "errors": [],
+      "warnings": [],
+      "screenshots": [
+        "evidence/stage-3-qa/screens/p1-invalid-csv-and-auto-clean-recovery-invalid-csv-error-mobile.png",
+        "evidence/stage-3-qa/screens/p1-invalid-csv-and-auto-clean-recovery-auto-cleaned-recovery-mobile.png"
+      ]
+    },
+    {
+      "viewport": "mobile",
+      "id": "p1-vision-modes-and-high-contrast-toggle",
+      "title": "Toggle Low-Vision High-Contrast (C key), CVD simulator modes, and chart geometries",
+      "status": "pass",
+      "ms": 257,
+      "error": null,
+      "errors": [],
+      "warnings": [],
+      "screenshots": [
+        "evidence/stage-3-qa/screens/p1-vision-modes-and-high-contrast-toggle-high-contrast-mode-mobile.png"
+      ]
+    },
+    {
+      "viewport": "mobile",
+      "id": "p1-custom-json-persistence-after-reload",
+      "title": "Author a custom JSON dataset and keep state across browser reload",
+      "status": "pass",
+      "ms": 343,
+      "error": null,
+      "errors": [],
+      "warnings": [],
+      "screenshots": [
+        "evidence/stage-3-qa/screens/p1-custom-json-persistence-after-reload-persisted-after-reload-mobile.png"
+      ]
+    },
+    {
+      "viewport": "mobile",
+      "id": "p2-responsive-and-touch-targets",
+      "title": "Verify zero horizontal overflow and >=44px touch targets on primary controls",
+      "status": "pass",
+      "ms": 97,
+      "error": null,
+      "errors": [],
+      "warnings": [],
+      "screenshots": []
+    }
+  ]
+}

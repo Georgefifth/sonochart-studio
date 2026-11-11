@@ -22,11 +22,70 @@ function extractUnitFromHeader(header: string): { cleanName: string; unit: strin
   return { cleanName: header.trim(), unit: '' };
 }
 
+/**
+ * Auto-detects CSV delimiter (comma, semicolon, or tab) outside of quoted strings.
+ */
+export function detectCsvDelimiter(headerLine: string): string {
+  let inQuotes = false;
+  let commas = 0;
+  let semicolons = 0;
+  let tabs = 0;
+  for (let i = 0; i < headerLine.length; i++) {
+    const ch = headerLine[i];
+    if (ch === '"') {
+      inQuotes = !inQuotes;
+    } else if (!inQuotes) {
+      if (ch === ',') commas++;
+      else if (ch === ';') semicolons++;
+      else if (ch === '\t') tabs++;
+    }
+  }
+  if (semicolons > commas && semicolons >= tabs) return ';';
+  if (tabs > commas && tabs > semicolons) return '\t';
+  return ',';
+}
+
+/**
+ * RFC 4180 quote-aware CSV row tokenizer.
+ */
+export function splitCsvRow(line: string, delimiter = ','): string[] {
+  const cells: string[] = [];
+  let current = '';
+  let inQuotes = false;
+
+  for (let i = 0; i < line.length; i++) {
+    const ch = line[i];
+    if (ch === '"') {
+      if (inQuotes && line[i + 1] === '"') {
+        current += '"';
+        i++;
+      } else {
+        inQuotes = !inQuotes;
+      }
+    } else if (ch === delimiter && !inQuotes) {
+      cells.push(current.trim());
+      current = '';
+    } else {
+      current += ch;
+    }
+  }
+  cells.push(current.trim());
+  return cells;
+}
+
+function isFiniteMetricToken(rawCell: string): boolean {
+  const cleaned = rawCell.replace(/[%$,]/g, '').trim();
+  if (cleaned === '') return false;
+  const num = Number(cleaned);
+  return Number.isFinite(num);
+}
+
 export function parseDatasetInput(
   rawInput: string,
   meta?: Partial<Pick<ChartDataset, 'id' | 'title' | 'subtitle' | 'category' | 'sourceName' | 'sourceUrl'>>
 ): ParseResult {
-  const trimmed = rawInput.trim();
+  // Strip UTF-8 BOM if present
+  const trimmed = rawInput.replace(/^\uFEFF/, '').trim();
   if (!trimmed) {
     return {
       ok: false,
@@ -74,8 +133,8 @@ function parseJsonInput(
       };
     }
 
-    const keys = Object.keys(rows[0]);
-    if (keys.length < 2) {
+    const rawKeys = Object.keys(rows[0]);
+    if (rawKeys.length < 2) {
       return {
         ok: false,
         errors: [
@@ -89,9 +148,25 @@ function parseJsonInput(
       };
     }
 
-    const csvLines = [keys.join(',')];
+    // If the first key in the JSON object is numeric (e.g., Vega's barley.json where "yield" comes before "variety"),
+    // promote the first string-valued property (or date/name/year label property) to Column 1 so the X-axis label is semantic.
+    let labelKey = rawKeys[0];
+    if (typeof rows[0][labelKey] === 'number') {
+      const stringKey = rawKeys.find((k) => typeof rows[0][k] === 'string');
+      if (stringKey) {
+        labelKey = stringKey;
+      }
+    }
+    const keys = [labelKey, ...rawKeys.filter((k) => k !== labelKey)];
+
+    const escapeCsvCell = (val: unknown) => {
+      const str = String(val ?? '');
+      return str.includes(',') || str.includes('"') ? `"${str.replace(/"/g, '""')}"` : str;
+    };
+
+    const csvLines = [keys.map(escapeCsvCell).join(',')];
     for (const r of rows) {
-      csvLines.push(keys.map((k) => String(r[k] ?? '')).join(','));
+      csvLines.push(keys.map((k) => escapeCsvCell(r[k])).join(','));
     }
     return parseCsvInput(csvLines.join('\n'), meta);
   } catch (err) {
@@ -115,6 +190,7 @@ function parseCsvInput(
   meta?: Partial<Pick<ChartDataset, 'id' | 'title' | 'subtitle' | 'category' | 'sourceName' | 'sourceUrl'>>
 ): ParseResult {
   const lines = rawCsv
+    .replace(/^\uFEFF/, '')
     .split(/\r?\n/)
     .map((l) => l.trim())
     .filter((l) => l.length > 0);
@@ -133,7 +209,8 @@ function parseCsvInput(
     };
   }
 
-  const headers = lines[0].split(',').map((h) => h.trim());
+  const delimiter = detectCsvDelimiter(lines[0]);
+  const headers = splitCsvRow(lines[0], delimiter);
   if (headers.length < 2 || headers.some((h) => h.length === 0)) {
     return {
       ok: false,
@@ -148,23 +225,54 @@ function parseCsvInput(
     };
   }
 
+  const tokenizedRows = lines.slice(1).map((rawLine, idx) => ({
+    lineNum: idx + 2,
+    rawLine,
+    cells: splitCsvRow(rawLine, delimiter),
+  }));
+
+  // Identify which columns (index >= 1) contain at least one finite numeric value.
+  // Purely categorical string columns (0 numeric rows across the entire table, such as
+  // ISO country codes "ABW" or region tags "sub_saharan_africa" in real-world Gapminder/WorldBank CSVs)
+  // are automatically excluded when at least one other column is numeric.
+  const colNumericCounts = headers.map((_, colIdx) => {
+    if (colIdx === 0) return 0;
+    let count = 0;
+    for (const row of tokenizedRows) {
+      if (row.cells.length === headers.length && isFiniteMetricToken(row.cells[colIdx] || '')) {
+        count++;
+      }
+    }
+    return count;
+  });
+
+  const anyNumericColumn = colNumericCounts.some((c) => c > 0);
+  const candidateColIndices: number[] = [];
+  for (let c = 1; c < headers.length; c++) {
+    if (!anyNumericColumn || colNumericCounts[c] > 0) {
+      candidateColIndices.push(c);
+    }
+  }
+
+  const activeColIndices = candidateColIndices.slice(0, 4);
+  const seriesCount = activeColIndices.length;
+
   const errors: ParseValidationError[] = [];
-  const validCsvLines: string[] = [lines[0]];
+  const validCsvLines: string[] = [
+    [headers[0], ...activeColIndices.map((c) => headers[c])].join(','),
+  ];
   const labels: string[] = [];
-  const seriesCount = Math.min(headers.length - 1, 4);
   const seriesValues: number[][] = Array.from({ length: seriesCount }, () => []);
 
-  for (let i = 1; i < lines.length; i++) {
-    const lineNum = i + 1;
-    const rawLine = lines[i];
-    const cells = rawLine.split(',').map((c) => c.trim());
+  for (const row of tokenizedRows) {
+    const { lineNum, rawLine, cells } = row;
 
     if (cells.length !== headers.length) {
       errors.push({
         line: lineNum,
         rawLine,
         message: `Row ${lineNum} has ${cells.length} columns, expected ${headers.length} columns (${headers.join(', ')}).`,
-        suggestion: `Ensure row ${lineNum} has exactly ${headers.length - 1} comma-separated numeric values after the label.`,
+        suggestion: `Ensure row ${lineNum} has ${headers.length} ${delimiter === ';' ? 'semicolon' : 'comma'}-separated values.`,
       });
       continue;
     }
@@ -185,16 +293,18 @@ function parseCsvInput(
     const parsedNums: number[] = [];
 
     for (let s = 0; s < seriesCount; s++) {
-      const rawVal = cells[s + 1].replace(/[%$,]/g, '');
-      const num = Number(rawVal);
-      if (rawVal === '' || !Number.isFinite(num)) {
+      const colIdx = activeColIndices[s];
+      const rawCell = cells[colIdx];
+      const cleaned = rawCell.replace(/[%$,]/g, '').trim();
+      const num = Number(cleaned);
+      if (cleaned === '' || !Number.isFinite(num)) {
         rowValid = false;
         errors.push({
           line: lineNum,
-          column: s + 2,
+          column: colIdx + 1,
           rawLine,
-          message: `Row ${lineNum} ("${rawLine}"): Column ${s + 2} ("${headers[s + 1]}") has non-numeric value "${cells[s + 1]}".`,
-          suggestion: `Replace "${cells[s + 1]}" on line ${lineNum} with a finite number, or click "Auto-Clean Invalid Rows".`,
+          message: `Row ${lineNum} ("${rawLine}"): Column ${colIdx + 1} ("${headers[colIdx]}") has non-numeric value "${rawCell}".`,
+          suggestion: `Replace "${rawCell}" on line ${lineNum} with a finite number, or click "Auto-Clean Invalid Rows".`,
         });
       } else {
         parsedNums.push(num);
@@ -203,7 +313,8 @@ function parseCsvInput(
 
     if (rowValid) {
       labels.push(label);
-      validCsvLines.push(rawLine);
+      const safeLabel = label.includes(',') ? `"${label.replace(/"/g, '""')}"` : label;
+      validCsvLines.push([safeLabel, ...parsedNums.map(String)].join(','));
       for (let s = 0; s < seriesCount; s++) {
         seriesValues[s].push(parsedNums[s]);
       }
@@ -218,7 +329,7 @@ function parseCsvInput(
     };
   }
 
-  const seriesMeta = headers.slice(1, 1 + seriesCount).map(extractUnitFromHeader);
+  const seriesMeta = activeColIndices.map((c) => extractUnitFromHeader(headers[c]));
   const primaryUnit = seriesMeta[0]?.unit || '';
 
   const series: DataSeries[] = seriesMeta.map((sm, idx) => ({
@@ -233,6 +344,8 @@ function parseCsvInput(
     values: seriesValues[idx],
   }));
 
+  const normalizedCsv = validCsvLines.join('\n');
+
   const dataset: ChartDataset = {
     id: meta?.id || 'custom-dataset',
     title: meta?.title || `${series.map((s) => s.name).join(' vs. ')} by ${headers[0]}`,
@@ -246,7 +359,7 @@ function parseCsvInput(
     yAxisUnit: primaryUnit,
     labels,
     series,
-    rawCsv: lines.join('\n'),
+    rawCsv: normalizedCsv,
   };
 
   return {

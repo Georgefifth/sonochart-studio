@@ -1,0 +1,81 @@
+{
+  "generatedAt": "2026-11-11T13:55:30.712Z",
+  "totalHoldoutCases": 5,
+  "passedHoldoutCases": 4,
+  "results": [
+    {
+      "file": "holdout01_vega_us_employment.csv",
+      "sourceUrl": "https://raw.githubusercontent.com/vega/vega-datasets/main/data/us-employment.csv",
+      "sha256": "988f8292bb9fe50b249b9bb6e3e4f8f5ef7290de219895df404dd239883b263d",
+      "passed": true,
+      "elapsedMs": 17.22,
+      "rows": 20,
+      "seriesCount": 4,
+      "seriesNames": [
+        "nonfarm",
+        "private",
+        "goods_producing",
+        "service_providing"
+      ],
+      "primaryHeadline": "holdout01_vega_us_employment.csv: nonfarm shows an upward trend (+1.9% overall, R²=0.98) across 20 month intervals, peaking at 138085 in 2007-06-01.",
+      "wcagScore": 100,
+      "wavBytes": 396944
+    },
+    {
+      "file": "holdout02_vega_disasters.csv",
+      "sourceUrl": "https://raw.githubusercontent.com/vega/vega-datasets/main/data/disasters.csv",
+      "sha256": "0c8f642388e054222061d3ec8b1ed238fd3e919572b7c953363e57ec01a9c1d9",
+      "passed": true,
+      "elapsedMs": 5.49,
+      "rows": 20,
+      "seriesCount": 2,
+      "seriesNames": [
+        "Year",
+        "Deaths"
+      ],
+      "primaryHeadline": "holdout02_vega_disasters.csv: Year shows an upward trend (+1.05% overall, R²=1) across 20 Entity intervals, peaking at 1920 in All natural disasters.",
+      "wcagScore": 100,
+      "wavBytes": 396944
+    },
+    {
+      "file": "holdout03_vega_barley.json",
+      "sourceUrl": "https://raw.githubusercontent.com/vega/vega-datasets/main/data/barley.json",
+      "sha256": "545472b238b63c020c10768d9ec8c0f0c358e61304710fe361ace72797598122",
+      "passed": true,
+      "elapsedMs": 2.89,
+      "rows": 16,
+      "seriesCount": 1,
+      "seriesNames": [
+        "year"
+      ],
+      "primaryHeadline": "holdout03_vega_barley.json: year shows a stable profile (+0% overall, R²=1) across 16 yield intervals, peaking at 1931 in 27.",
+      "wcagScore": 100,
+      "wavBytes": 326384
+    },
+    {
+      "file": "holdout04_vega_cars.json",
+      "sourceUrl": "https://raw.githubusercontent.com/vega/vega-datasets/main/data/cars.json",
+      "sha256": "5cccf792ea8a072b8796c99e6356f6b6822d706b6ca34a81340f19239fb1565c",
+      "passed": false,
+      "error": "Row 12 (\"citroen ds-21 pallas,,4,133,115,3090,17.5,1970-01-01,Europe\"): Column 2 (\"Miles_per_Gallon\") has non-numeric value \"\"."
+    },
+    {
+      "file": "holdout05_vega_budget.json",
+      "sourceUrl": "https://raw.githubusercontent.com/vega/vega-datasets/main/data/budget.json",
+      "sha256": "46f778f6973772bfafd22aea8acc5a9c293f0c9808397c18a0c8d0fbcc8e29c0",
+      "passed": true,
+      "elapsedMs": 10.73,
+      "rows": 16,
+      "seriesCount": 4,
+      "seriesNames": [
+        "1963",
+        "1964",
+        "1965",
+        "1966"
+      ],
+      "primaryHeadline": "holdout05_vega_budget.json: 1963 shows a stable profile (+0% overall, R²=0.04) across 16 1962 intervals, peaking at 47587746 in 45,571,090.",
+      "wcagScore": 100,
+      "wavBytes": 326384
+    }
+  ]
+}

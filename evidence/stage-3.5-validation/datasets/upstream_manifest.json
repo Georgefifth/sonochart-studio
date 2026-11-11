@@ -1,0 +1,47 @@
+[
+  {
+    "file": "01_global_co2_mauna_loa.csv",
+    "sourceUrl": "https://raw.githubusercontent.com/datasets/co2-ppm/master/data/co2-annmean-mlo.csv",
+    "description": "NOAA GML Mauna Loa CO2 Annual Mean (Open Data / Public Domain)",
+    "totalUpstreamLines": 68,
+    "savedLines": 35,
+    "sha256": "66fe3d3321d180d5df5f94ac57638e6dd25c0cca8bd2a242ca9cdd272ef2d8d7",
+    "downloadedAt": "2026-11-11T13:43:05Z"
+  },
+  {
+    "file": "02_global_temp_gistemp.csv",
+    "sourceUrl": "https://raw.githubusercontent.com/datasets/global-temp/master/data/annual.csv",
+    "description": "NASA GISS Global Annual Temperature Anomalies (ODC-PDDL)",
+    "totalUpstreamLines": 324,
+    "savedLines": 35,
+    "sha256": "b017ff715743b3ec0c78d8632a07fd36953926147aa3375de1c83ce767b89165",
+    "downloadedAt": "2026-11-11T13:43:05Z"
+  },
+  {
+    "file": "03_vega_seattle_weather.csv",
+    "sourceUrl": "https://raw.githubusercontent.com/vega/vega-datasets/main/data/seattle-weather.csv",
+    "description": "Vega Datasets \u2014 NOAA Seattle Weather Daily Observations (BSD-3-Clause)",
+    "totalUpstreamLines": 1462,
+    "savedLines": 35,
+    "sha256": "911e9c5c1eca88cfb5b036538437aa605d771c034f140967fb263c43178695b8",
+    "downloadedAt": "2026-11-11T13:43:06Z"
+  },
+  {
+    "file": "04_vega_gapminder_health_income.csv",
+    "sourceUrl": "https://raw.githubusercontent.com/vega/vega-datasets/main/data/gapminder-health-income.csv",
+    "description": "Vega Datasets \u2014 Gapminder Health & Income by Country (BSD-3-Clause)",
+    "totalUpstreamLines": 188,
+    "savedLines": 35,
+    "sha256": "f7a593ce78a64d611473c193649196862c518394572bc8b0c417698091910365",
+    "downloadedAt": "2026-11-11T13:43:06Z"
+  },
+  {
+    "file": "05_owid_ measles_cases_sample.csv",
+    "sourceUrl": "https://raw.githubusercontent.com/datasets/population/master/data/population.csv",
+    "description": "World Bank / UN Global Population Dataset via datasets/population (ODC-PDDL)",
+    "totalUpstreamLines": 17395,
+    "savedLines": 35,
+    "sha256": "c76426e85a0e3c87fc0c18ddcc06a0723f3fc2fa898a63148f2be24bc4823eea",
+    "downloadedAt": "2026-11-11T13:43:06Z"
+  }
+]

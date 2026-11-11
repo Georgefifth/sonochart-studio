@@ -1,0 +1,273 @@
+{
+  "generatedAt": "2026-11-11T14:02:48.571Z",
+  "competitorPackage": "chart2music v1.x (Fair head-to-head benchmark in JSDOM with full DOM globals)",
+  "totalCases": 12,
+  "sonoChartPassCount": 12,
+  "chart2MusicPassCount": 5,
+  "results": [
+    {
+      "id": "case01",
+      "file": "case01_basic_noaa_co2.csv",
+      "tier": "Basic",
+      "sonoChartStudio": {
+        "passed": true,
+        "elapsedMs": 16.25,
+        "hasPointKOfNContext": true,
+        "hasTactileSvgPatterns": true,
+        "hasWavExport": true,
+        "autoCleanRecovery": false
+      },
+      "chart2MusicBaseline": {
+        "passedWithStandardCsvLoader": true,
+        "elapsedMs": 12.66,
+        "hasPointKOfNContext": false,
+        "hasTactileSvgPatterns": false,
+        "hasWavExport": false,
+        "ccOutputSample": null,
+        "limitationOrError": null
+      }
+    },
+    {
+      "id": "case02",
+      "file": "case02_basic_vega_stocks.csv",
+      "tier": "Basic",
+      "sonoChartStudio": {
+        "passed": true,
+        "elapsedMs": 2.76,
+        "hasPointKOfNContext": true,
+        "hasTactileSvgPatterns": true,
+        "hasWavExport": true,
+        "autoCleanRecovery": false
+      },
+      "chart2MusicBaseline": {
+        "passedWithStandardCsvLoader": true,
+        "elapsedMs": 1.37,
+        "hasPointKOfNContext": false,
+        "hasTactileSvgPatterns": false,
+        "hasWavExport": false,
+        "ccOutputSample": null,
+        "limitationOrError": null
+      }
+    },
+    {
+      "id": "case03",
+      "file": "case03_inter_nasa_gistemp.csv",
+      "tier": "Intermediate",
+      "sonoChartStudio": {
+        "passed": true,
+        "elapsedMs": 2.64,
+        "hasPointKOfNContext": true,
+        "hasTactileSvgPatterns": true,
+        "hasWavExport": true,
+        "autoCleanRecovery": false
+      },
+      "chart2MusicBaseline": {
+        "passedWithStandardCsvLoader": true,
+        "elapsedMs": 1.02,
+        "hasPointKOfNContext": false,
+        "hasTactileSvgPatterns": false,
+        "hasWavExport": false,
+        "ccOutputSample": null,
+        "limitationOrError": null
+      }
+    },
+    {
+      "id": "case04",
+      "file": "case04_inter_vega_wheat.json",
+      "tier": "Intermediate",
+      "sonoChartStudio": {
+        "passed": true,
+        "elapsedMs": 5.27,
+        "hasPointKOfNContext": true,
+        "hasTactileSvgPatterns": true,
+        "hasWavExport": true,
+        "autoCleanRecovery": false
+      },
+      "chart2MusicBaseline": {
+        "passedWithStandardCsvLoader": false,
+        "elapsedMs": 0.18,
+        "hasPointKOfNContext": false,
+        "hasTactileSvgPatterns": false,
+        "hasWavExport": false,
+        "ccOutputSample": null,
+        "limitationOrError": "Requires pre-cleaned JS array (no built-in RFC 4180 CSV/JSON/semicolon/NA/categorical column parser)"
+      }
+    },
+    {
+      "id": "case05",
+      "file": "case05_adv_vega_gapminder_quoted.csv",
+      "tier": "Advanced",
+      "sonoChartStudio": {
+        "passed": true,
+        "elapsedMs": 6.44,
+        "hasPointKOfNContext": true,
+        "hasTactileSvgPatterns": true,
+        "hasWavExport": true,
+        "autoCleanRecovery": false
+      },
+      "chart2MusicBaseline": {
+        "passedWithStandardCsvLoader": false,
+        "elapsedMs": 0.24,
+        "hasPointKOfNContext": false,
+        "hasTactileSvgPatterns": false,
+        "hasWavExport": false,
+        "ccOutputSample": null,
+        "limitationOrError": "Requires pre-cleaned JS array (no built-in RFC 4180 CSV/JSON/semicolon/NA/categorical column parser)"
+      }
+    },
+    {
+      "id": "case06",
+      "file": "case06_adv_vega_seattle_weather.csv",
+      "tier": "Advanced",
+      "sonoChartStudio": {
+        "passed": true,
+        "elapsedMs": 9.86,
+        "hasPointKOfNContext": true,
+        "hasTactileSvgPatterns": true,
+        "hasWavExport": true,
+        "autoCleanRecovery": false
+      },
+      "chart2MusicBaseline": {
+        "passedWithStandardCsvLoader": true,
+        "elapsedMs": 0.87,
+        "hasPointKOfNContext": false,
+        "hasTactileSvgPatterns": false,
+        "hasWavExport": false,
+        "ccOutputSample": null,
+        "limitationOrError": null
+      }
+    },
+    {
+      "id": "case07",
+      "file": "case07_adv_worldbank_pop.csv",
+      "tier": "Advanced",
+      "sonoChartStudio": {
+        "passed": true,
+        "elapsedMs": 5.25,
+        "hasPointKOfNContext": true,
+        "hasTactileSvgPatterns": true,
+        "hasWavExport": true,
+        "autoCleanRecovery": false
+      },
+      "chart2MusicBaseline": {
+        "passedWithStandardCsvLoader": false,
+        "elapsedMs": 0.06,
+        "hasPointKOfNContext": false,
+        "hasTactileSvgPatterns": false,
+        "hasWavExport": false,
+        "ccOutputSample": null,
+        "limitationOrError": "Requires pre-cleaned JS array (no built-in RFC 4180 CSV/JSON/semicolon/NA/categorical column parser)"
+      }
+    },
+    {
+      "id": "case08",
+      "file": "case08_edge_bom_semicolon.csv",
+      "tier": "Edge Case",
+      "sonoChartStudio": {
+        "passed": true,
+        "elapsedMs": 1.66,
+        "hasPointKOfNContext": true,
+        "hasTactileSvgPatterns": true,
+        "hasWavExport": true,
+        "autoCleanRecovery": false
+      },
+      "chart2MusicBaseline": {
+        "passedWithStandardCsvLoader": false,
+        "elapsedMs": 0.05,
+        "hasPointKOfNContext": false,
+        "hasTactileSvgPatterns": false,
+        "hasWavExport": false,
+        "ccOutputSample": null,
+        "limitationOrError": "Requires pre-cleaned JS array (no built-in RFC 4180 CSV/JSON/semicolon/NA/categorical column parser)"
+      }
+    },
+    {
+      "id": "case09",
+      "file": "case09_edge_na_cells.csv",
+      "tier": "Edge Case",
+      "sonoChartStudio": {
+        "passed": true,
+        "elapsedMs": 1.34,
+        "hasPointKOfNContext": true,
+        "hasTactileSvgPatterns": true,
+        "hasWavExport": true,
+        "autoCleanRecovery": true
+      },
+      "chart2MusicBaseline": {
+        "passedWithStandardCsvLoader": false,
+        "elapsedMs": 0.03,
+        "hasPointKOfNContext": false,
+        "hasTactileSvgPatterns": false,
+        "hasWavExport": false,
+        "ccOutputSample": null,
+        "limitationOrError": "Requires pre-cleaned JS array (no built-in RFC 4180 CSV/JSON/semicolon/NA/categorical column parser)"
+      }
+    },
+    {
+      "id": "case10",
+      "file": "case10_neg_prose_text.txt",
+      "tier": "Negative Case",
+      "sonoChartStudio": {
+        "passed": true,
+        "elapsedMs": 0.03,
+        "hasPointKOfNContext": false,
+        "hasTactileSvgPatterns": true,
+        "hasWavExport": false,
+        "autoCleanRecovery": false
+      },
+      "chart2MusicBaseline": {
+        "passedWithStandardCsvLoader": false,
+        "elapsedMs": 0.15,
+        "hasPointKOfNContext": false,
+        "hasTactileSvgPatterns": false,
+        "hasWavExport": false,
+        "ccOutputSample": null,
+        "limitationOrError": "Cannot read properties of undefined (reading 'x')"
+      }
+    },
+    {
+      "id": "case11",
+      "file": "case11_neg_header_only.csv",
+      "tier": "Negative Case",
+      "sonoChartStudio": {
+        "passed": true,
+        "elapsedMs": 0.01,
+        "hasPointKOfNContext": false,
+        "hasTactileSvgPatterns": true,
+        "hasWavExport": false,
+        "autoCleanRecovery": false
+      },
+      "chart2MusicBaseline": {
+        "passedWithStandardCsvLoader": false,
+        "elapsedMs": 0.07,
+        "hasPointKOfNContext": false,
+        "hasTactileSvgPatterns": false,
+        "hasWavExport": false,
+        "ccOutputSample": null,
+        "limitationOrError": "Cannot read properties of undefined (reading 'x')"
+      }
+    },
+    {
+      "id": "case12",
+      "file": "case12_adv_xss_injection.csv",
+      "tier": "Adversarial Case",
+      "sonoChartStudio": {
+        "passed": true,
+        "elapsedMs": 1.32,
+        "hasPointKOfNContext": true,
+        "hasTactileSvgPatterns": true,
+        "hasWavExport": true,
+        "autoCleanRecovery": false
+      },
+      "chart2MusicBaseline": {
+        "passedWithStandardCsvLoader": true,
+        "elapsedMs": 0.85,
+        "hasPointKOfNContext": false,
+        "hasTactileSvgPatterns": false,
+        "hasWavExport": false,
+        "ccOutputSample": null,
+        "limitationOrError": null
+      }
+    }
+  ]
+}
