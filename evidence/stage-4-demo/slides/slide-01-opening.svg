@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="960" height="540">
+  <defs>
+    <pattern id="diagHatch" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="12" height="12" fill="#0047AB" fill-opacity="0.25" />
+      <line x1="0" y1="0" x2="0" y2="12" stroke="#38BDF8" stroke-width="4" />
+    </pattern>
+    <pattern id="crossHatch" width="12" height="12" patternUnits="userSpaceOnUse">
+      <rect width="12" height="12" fill="#C83E00" fill-opacity="0.22" />
+      <path d="M 0,0 L 12,12 M 12,0 L 0,12" stroke="#F59E0B" stroke-width="2.5" />
+    </pattern>
+  </defs>
+
+  <rect width="960" height="540" rx="16" fill="#0B101B" stroke="#1E293B" stroke-width="3" />
+
+  <!-- Top Contextual Screen-Reader Banner -->
+  <rect x="36" y="28" width="888" height="64" rx="8" fill="#111827" stroke="#38BDF8" stroke-width="2" />
+  <rect x="36" y="28" width="10" height="64" rx="4" fill="#38BDF8" />
+  <text x="64" y="52" fill="#94A3B8" font-family="IBM Plex Mono, monospace" font-size="13" font-weight="700">
+    NVDA / VOICEOVER CONTEXTUAL ARIA LIVE READOUT • POINT 4 OF 11
+  </text>
+  <text x="64" y="76" fill="#F8FAFC" font-family="IBM Plex Mono, monospace" font-size="16" font-weight="700">
+    "Year 2018: Solar PV = 489 GW (+23.5% vs prev). Pitch E3 (164.8 Hz, Pan -0.34 L)"
+  </text>
+
+  <!-- Central Tactile SVG Chart Viewport -->
+  <rect x="36" y="110" width="560" height="296" rx="10" fill="#0F172A" stroke="#334155" stroke-width="2" />
+  <text x="58" y="142" fill="#F8FAFC" font-family="Space Grotesk, sans-serif" font-size="18" font-weight="700">
+    Tactile Geometric SVG + Machado (2009) CVD Safe Palette
+  </text>
+
+  <!-- Grid Lines -->
+  <line x1="76" y1="175" x2="566" y2="175" stroke="#1E293B" stroke-dasharray="4 4" stroke-width="1.5" />
+  <line x1="76" y1="235" x2="566" y2="235" stroke="#1E293B" stroke-dasharray="4 4" stroke-width="1.5" />
+  <line x1="76" y1="295" x2="566" y2="295" stroke="#1E293B" stroke-dasharray="4 4" stroke-width="1.5" />
+  <line x1="76" y1="355" x2="566" y2="355" stroke="#64748B" stroke-width="2" />
+
+  <!-- Grouped Tactile Bars -->
+  <g>
+    <!-- 2016 -->
+    <rect x="96" y="305" width="28" height="50" fill="url(#diagHatch)" stroke="#38BDF8" stroke-width="2" />
+    <rect x="128" y="285" width="28" height="70" fill="url(#crossHatch)" stroke="#F59E0B" stroke-width="2" />
+    <!-- 2018 (Active Playhead) -->
+    <rect x="184" y="155" width="84" height="200" fill="#F59E0B" fill-opacity="0.12" />
+    <line x1="226" y1="155" x2="226" y2="355" stroke="#F59E0B" stroke-width="2.5" stroke-dasharray="4 4" />
+    <rect x="194" y="272" width="28" height="83" fill="url(#diagHatch)" stroke="#38BDF8" stroke-width="3" />
+    <rect x="226" y="260" width="28" height="95" fill="url(#crossHatch)" stroke="#F59E0B" stroke-width="3" />
+    <!-- 2020 -->
+    <rect x="292" y="242" width="28" height="113" fill="url(#diagHatch)" stroke="#38BDF8" stroke-width="2" />
+    <rect x="324" y="236" width="28" height="119" fill="url(#crossHatch)" stroke="#F59E0B" stroke-width="2" />
+    <!-- 2022 -->
+    <rect x="390" y="205" width="28" height="150" fill="url(#diagHatch)" stroke="#38BDF8" stroke-width="2" />
+    <rect x="422" y="220" width="28" height="135" fill="url(#crossHatch)" stroke="#F59E0B" stroke-width="2" />
+    <!-- 2025 -->
+    <rect x="488" y="168" width="28" height="187" fill="url(#diagHatch)" stroke="#38BDF8" stroke-width="2" />
+    <rect x="520" y="198" width="28" height="157" fill="url(#crossHatch)" stroke="#F59E0B" stroke-width="2" />
+  </g>
+
+  <!-- Right Side 4-Layer Architecture Stack Cards -->
+  <rect x="616" y="110" width="308" height="68" rx="8" fill="#111827" stroke="#38BDF8" stroke-width="2" />
+  <text x="634" y="136" fill="#38BDF8" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="700">LAYER 01 • SPATIAL WEB AUDIO</text>
+  <text x="634" y="158" fill="#E2E8F0" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600">Pentatonic Pitch + Stereo Pan</text>
+
+  <rect x="616" y="186" width="308" height="68" rx="8" fill="#111827" stroke="#F59E0B" stroke-width="2" />
+  <text x="634" y="212" fill="#F59E0B" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="700">LAYER 02 • TACTILE SVG &amp; CVD</text>
+  <text x="634" y="234" fill="#E2E8F0" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600">4 Hatch Patterns + C-Key Contrast</text>
+
+  <rect x="616" y="262" width="308" height="68" rx="8" fill="#111827" stroke="#10B981" stroke-width="2" />
+  <text x="634" y="288" fill="#10B981" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="700">LAYER 03 • W3C &amp; OLS STATS</text>
+  <text x="634" y="310" fill="#E2E8F0" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600">Slope, R², IQR &amp; Semantic Table</text>
+
+  <rect x="616" y="338" width="308" height="68" rx="8" fill="#111827" stroke="#A855F7" stroke-width="2" />
+  <text x="634" y="364" fill="#A855F7" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="700">LAYER 04 • ZERO-CLOUD EXPORT</text>
+  <text x="634" y="386" fill="#E2E8F0" font-family="Space Grotesk, sans-serif" font-size="14" font-weight="600">.HTML Widget + 16-Bit .WAV + .SVG</text>
+
+  <!-- Bottom Acoustic Pitch & Stereo Pan Telemetry Bar -->
+  <rect x="36" y="424" width="888" height="86" rx="8" fill="#111827" stroke="#334155" stroke-width="2" />
+  <rect x="56" y="444" width="188" height="46" rx="6" fill="#C83E00" />
+  <text x="150" y="472" text-anchor="middle" fill="#FFFFFF" font-family="Space Grotesk, sans-serif" font-size="15" font-weight="700">
+    ▶ PLAY SONIFICATION (P)
+  </text>
+  <rect x="262" y="444" width="196" height="46" rx="6" fill="#1E293B" stroke="#475569" stroke-width="1.5" />
+  <text x="360" y="472" text-anchor="middle" fill="#38BDF8" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="700">
+    PITCH: E3 (164.8 Hz)
+  </text>
+  <rect x="474" y="444" width="196" height="46" rx="6" fill="#1E293B" stroke="#475569" stroke-width="1.5" />
+  <text x="572" y="472" text-anchor="middle" fill="#F59E0B" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="700">
+    PAN: -0.34 L STEREO
+  </text>
+  <rect x="686" y="444" width="218" height="46" rx="6" fill="#064E3B" stroke="#10B981" stroke-width="1.5" />
+  <text x="795" y="472" text-anchor="middle" fill="#34D399" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="700">
+    WCAG 2.2 + APCA: 100/100
+  </text>
+</svg>

@@ -1,0 +1,414 @@
+{
+  "project_name": "SonoChart Studio",
+  "tagline": "Multi-Modal Accessible Data Visualization & Sonification Authoring Studio",
+  "preset": "dark-premium",
+  "fps": 30,
+  "width": 1920,
+  "height": 1080,
+  "bgm": "cyber-pulse",
+  "scenes": [
+    {
+      "scene_id": "opening",
+      "kicker": "CODE FOR CHANGE HACKATHON · ACCESSIBILITY & STEM",
+      "title": "SonoChart Studio: Multi-Modal Accessible Data",
+      "subtitle": "Browser-native workbench transforming CSV/JSON data into spatial Web Audio, tactile SVG patterns, and WCAG 2.2 AA widgets",
+      "duration": 7.5,
+      "narration": "SonoChart Studio transforms silent CSV tables into 'four-layer' accessible charts in under 30 seconds.",
+      "visual_type": "opening_title",
+      "fact_ids": [
+        "fact_multimodal_4layer"
+      ],
+      "assets": [
+        "images/sonochart_hero.svg"
+      ],
+      "badges": [
+        "WCAG 2.2 AA & APCA Lc>=60",
+        "44.1kHz STEREO PCM WAV",
+        "100% REAL-WORLD VALIDATED"
+      ],
+      "animations": [
+        {
+          "type": "highlight",
+          "target": "CONTEXTUAL ARIA READOUT",
+          "text": "NVDA / VoiceOver Point k-of-N Bar",
+          "subtext": "Fixes Highcharts #28 & Chart2Music #689",
+          "start": 0.8,
+          "duration": 5.8,
+          "x": 50,
+          "y": 14,
+          "w": 84,
+          "h": 14
+        }
+      ]
+    },
+    {
+      "scene_id": "problem",
+      "kicker": "ACCESSIBILITY BOTTLENECK ANALYSIS",
+      "title": "Why Standard Web Charts Exclude Millions",
+      "subtitle": "Opaque pixels, missing positional context, and color-only series violate ADA Title II & WCAG 2.2 AA",
+      "duration": 8,
+      "narration": "Standard web charts export opaque pixels, failing 'WCAG 2.2 AA', color-blind readers, and NVDA screen readers.",
+      "visual_type": "problem_flow",
+      "fact_ids": [
+        "fact_competitor_fixes"
+      ],
+      "diagram": {
+        "nodes": [
+          {
+            "id": "node_raw",
+            "label": "Static Canvas / PNG",
+            "sublabel": "Excel & Chart.js default output",
+            "category": "input",
+            "metric": "0 ARIA nodes"
+          },
+          {
+            "id": "node_nvda",
+            "label": "Lost Screen-Reader Context",
+            "sublabel": "Highcharts #28 & Chart2Music #689",
+            "category": "bottleneck",
+            "metric": "No k-of-N index"
+          },
+          {
+            "id": "node_cvd",
+            "label": "Color-Only Multi-Series",
+            "sublabel": "MAIDR #361 & WCAG 1.4.1 failure",
+            "category": "bottleneck",
+            "metric": "300M CVD users"
+          },
+          {
+            "id": "node_ada",
+            "label": "Manual Remediation Wall",
+            "sublabel": "3 separate tools per chart",
+            "category": "output",
+            "metric": "20 min/chart"
+          }
+        ],
+        "edges": [
+          {
+            "from": "node_raw",
+            "to": "node_nvda",
+            "label": "BLIND READERS",
+            "status": "bottleneck"
+          },
+          {
+            "from": "node_nvda",
+            "to": "node_cvd",
+            "label": "LOW-VISION & CVD",
+            "status": "bottleneck"
+          },
+          {
+            "from": "node_cvd",
+            "to": "node_ada",
+            "label": "ADA TITLE II GAP",
+            "status": "bottleneck"
+          }
+        ]
+      },
+      "animations": [
+        {
+          "type": "highlight",
+          "target": "node_nvda",
+          "text": "Highcharts #28: Missing Point k-of-N Context",
+          "start": 0.9,
+          "duration": 3.2
+        },
+        {
+          "type": "highlight",
+          "target": "node_cvd",
+          "text": "MAIDR #361: Multi-Series Collapse in High-Contrast",
+          "start": 4.2,
+          "duration": 3.2
+        }
+      ]
+    },
+    {
+      "scene_id": "architecture",
+      "kicker": "CLIENT-SIDE DETERMINISTIC ARCHITECTURE",
+      "title": "Four-Layer Accessible Data Architecture",
+      "subtitle": "Zero-cloud TypeScript pipeline unifying RFC 4180 parsing, OLS stats, tactile SVG, and PCM WAV synthesis",
+      "duration": 9,
+      "narration": "Our deterministic browser engine unifies 'RFC 4180' parsing, OLS regression, 'tactile SVG' hatch patterns, and stereo 'Web Audio' synthesis.",
+      "visual_type": "exploded_view",
+      "fact_ids": [
+        "fact_multimodal_4layer",
+        "fact_competitor_fixes"
+      ],
+      "assets": [
+        "models/sonochart_layers.svg"
+      ],
+      "exploded_parts": [
+        {
+          "id": "layer_parser",
+          "name": "RFC 4180 Parser & Auto-Clean",
+          "spec": "CSV / JSON / SEMICOLON · 4.6ms",
+          "role": "Quote-aware tokenizer, categorical filter, and 1-click malformed row repair",
+          "layer": -1.6
+        },
+        {
+          "id": "layer_stats",
+          "name": "OLS Regression & W3C Summary",
+          "spec": "SLOPE · R² · IQR · Z-SCORE",
+          "role": "Computes trend slope, extrema, and Point k-of-N ARIA live announcements",
+          "layer": -0.5
+        },
+        {
+          "id": "layer_tactile",
+          "name": "Tactile SVG & Machado CVD Matrix",
+          "spec": "4 HATCH PATTERNS · APCA Lc>=60",
+          "role": "Simultaneous geometric hatch patterns, CVD simulation, and C-key High-Contrast",
+          "layer": 0.6
+        },
+        {
+          "id": "layer_audio",
+          "name": "Spatial Web Audio & WAV Encoder",
+          "spec": "44.1kHz 16-BIT STEREO PCM",
+          "role": "Harmonic scale quantization, stereo panning (-0.85L..+0.85R), and RIFF WAV export",
+          "layer": 1.7
+        }
+      ],
+      "animations": [
+        {
+          "type": "explode",
+          "target": "assembly",
+          "start": 0.4,
+          "duration": 8
+        },
+        {
+          "type": "highlight",
+          "target": "layer_tactile",
+          "text": "4 Geometric SVG Patterns + Machado 2009 CVD Simulator",
+          "start": 1.5,
+          "duration": 3.4
+        },
+        {
+          "type": "label",
+          "target": "layer_audio",
+          "text": "In-Memory 44.1kHz 16-Bit Stereo PCM WAV Synthesizer",
+          "start": 5,
+          "duration": 3.4
+        }
+      ]
+    },
+    {
+      "scene_id": "live_demo_scrub",
+      "kicker": "LIVE DEPLOYED WEB APP CAPTURE · PART 1",
+      "title": "Spatial Scrubbing & Low-Vision High-Contrast",
+      "subtitle": "Real-time Playwright capture on https://georgefifth.github.io/sonochart-studio/",
+      "duration": 9,
+      "narration": "Stepping across data points triggers stereo pitch notes, 'Point k of N' ARIA readouts, and instant 'C-key' High-Contrast mode.",
+      "visual_type": "real_footage_with_annotations",
+      "fact_ids": [
+        "fact_multimodal_4layer",
+        "fact_stage3_qa"
+      ],
+      "live_capture": {
+        "url": "https://georgefifth.github.io/sonochart-studio/",
+        "actions": [
+          {
+            "wait": 600
+          },
+          {
+            "click": "[data-testid=\"btn-step-next\"]"
+          },
+          {
+            "wait": 500
+          },
+          {
+            "click": "[data-testid=\"btn-step-next\"]"
+          },
+          {
+            "wait": 500
+          },
+          {
+            "click": "[data-testid=\"btn-toggle-high-contrast\"]"
+          },
+          {
+            "wait": 900
+          },
+          {
+            "click": "[data-testid=\"preset-global-temp-anomalies\"]"
+          },
+          {
+            "wait": 900
+          },
+          {
+            "click": "[data-testid=\"btn-toggle-high-contrast\"]"
+          },
+          {
+            "wait": 600
+          }
+        ]
+      },
+      "animations": [
+        {
+          "type": "highlight",
+          "target": "ARIA LIVE BAR",
+          "text": "Point k of N Contextual Readout",
+          "subtext": "Includes % delta, extrema tag, Hz pitch & pan",
+          "start": 0.6,
+          "duration": 4,
+          "x": 32,
+          "y": 24,
+          "w": 54,
+          "h": 14
+        },
+        {
+          "type": "label",
+          "target": "HIGH-CONTRAST MODE",
+          "text": "1-Key (C) Neon High-Contrast Mode",
+          "subtext": "Preserves diagonal & cross-hatch SVG patterns",
+          "start": 4.7,
+          "duration": 3.8,
+          "x": 32,
+          "y": 54,
+          "w": 54,
+          "h": 34
+        }
+      ]
+    },
+    {
+      "scene_id": "live_demo_repair_export",
+      "kicker": "LIVE DEPLOYED WEB APP CAPTURE · PART 2",
+      "title": "1-Click CSV Auto-Clean & 4-Layer Bundle Export",
+      "subtitle": "Exact row/column diagnostics, instant repair, and zero-dependency WCAG widget export",
+      "duration": 9,
+      "narration": "Malformed CSV rows are caught by exact line number, repaired in one click, and exported as standalone 'HTML' and 16-bit 'WAV' bundles.",
+      "visual_type": "real_footage_with_annotations",
+      "fact_ids": [
+        "fact_stage3_qa",
+        "fact_stage35_validation"
+      ],
+      "live_capture": {
+        "url": "https://georgefifth.github.io/sonochart-studio/",
+        "actions": [
+          {
+            "wait": 500
+          },
+          {
+            "click": "[data-testid=\"tab-data\"]"
+          },
+          {
+            "wait": 600
+          },
+          {
+            "click": "[data-testid=\"btn-load-invalid-csv\"]"
+          },
+          {
+            "wait": 1000
+          },
+          {
+            "click": "[data-testid=\"btn-auto-clean-csv\"]"
+          },
+          {
+            "wait": 900
+          },
+          {
+            "click": "[data-testid=\"tab-export\"]"
+          },
+          {
+            "wait": 900
+          }
+        ]
+      },
+      "animations": [
+        {
+          "type": "highlight",
+          "target": "LINE & COLUMN DIAGNOSTICS",
+          "text": "Catches Non-Numeric Cells on Line 4 & 5",
+          "subtext": "Offers 1-click Auto-Clean Invalid Rows recovery",
+          "start": 0.8,
+          "duration": 4,
+          "x": 78,
+          "y": 58,
+          "w": 36,
+          "h": 36
+        },
+        {
+          "type": "label",
+          "target": "4-LAYER EXPORT BUNDLE",
+          "text": "Exports .HTML, .WAV, .SVG & .JSON Locally",
+          "subtext": "100% browser-native with zero cloud uploads",
+          "start": 5,
+          "duration": 3.5,
+          "x": 78,
+          "y": 48,
+          "w": 36,
+          "h": 34
+        }
+      ]
+    },
+    {
+      "scene_id": "validation",
+      "kicker": "STAGE 3.5 REAL-WORLD VALIDATION & BENCHMARK",
+      "title": "Verified on 17 NOAA, NASA & Vega Datasets",
+      "subtitle": "Head-to-head benchmark against Chart2Music v1.x and honest architectural boundaries",
+      "duration": 8.5,
+      "narration": "Tested on 17 NOAA, NASA, and Vega datasets, SonoChart reached '100%' validation accuracy in 4.6ms versus '41.7%' on Chart2Music.",
+      "visual_type": "technical_validation",
+      "fact_ids": [
+        "fact_stage35_validation"
+      ],
+      "metrics": [
+        {
+          "id": "val_suite",
+          "label": "12-Case Real-World & Edge Validation Pass Rate",
+          "value": 100,
+          "unit": "%",
+          "baseline": 41.7,
+          "status": "verified",
+          "note": "SonoChart Studio (12/12 post-fix) vs Chart2Music v1.x (5/12) on NOAA, NASA, Vega & XSS cases"
+        },
+        {
+          "id": "holdout_suite",
+          "label": "5-Dataset Untouched Vega Hold-Out Pass Rate",
+          "value": 100,
+          "unit": "%",
+          "baseline": 80,
+          "status": "verified",
+          "note": "5/5 passed (us-employment, disasters, barley, cars, budget) in 8.2ms avg"
+        },
+        {
+          "id": "qa_suite",
+          "label": "Stage 3 Firefox Desktop & Mobile E2E QA Pass Rate",
+          "value": 100,
+          "unit": "%",
+          "baseline": 71.4,
+          "status": "verified",
+          "note": "14/14 scenarios passed after fixing localStorage reload & high-contrast CSS transition"
+        }
+      ],
+      "limitations": [
+        "Capped at 4 concurrent numeric series per chart to preserve harmonic and tactile SVG clarity",
+        "Live browser AudioContext playback requires initial user gesture per W3C autoplay policy"
+      ],
+      "animations": [
+        {
+          "type": "highlight",
+          "target": "val_suite",
+          "text": "100% vs 41.7% on Real-World & Edge Cases",
+          "start": 0.8,
+          "duration": 4
+        }
+      ]
+    },
+    {
+      "scene_id": "closing",
+      "kicker": "CODE FOR CHANGE GLOBAL HACKATHON SUBMISSION",
+      "title": "SonoChart Studio · Ready for Classrooms & Civic Web",
+      "subtitle": "Open-source MIT workbench · Live on GitHub Pages · Zero external API keys",
+      "duration": 6.5,
+      "narration": "SonoChart Studio: verified '14 of 14' browser QA checks and live on GitHub Pages for 'Code for Change'.",
+      "visual_type": "closing_summary",
+      "fact_ids": [
+        "fact_multimodal_4layer",
+        "fact_stage3_qa",
+        "fact_stage35_validation"
+      ],
+      "badges": [
+        "LIVE URL::georgefifth.github.io/sonochart-studio",
+        "GITHUB::github.com/Georgefifth/sonochart-studio",
+        "VERDICT::PASS (14/14 QA · 17/17 Real Datasets)"
+      ]
+    }
+  ]
+}

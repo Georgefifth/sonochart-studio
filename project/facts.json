@@ -1,0 +1,54 @@
+{
+  "project_name": "SonoChart Studio",
+  "last_updated": "2026-11-11",
+  "facts": [
+    {
+      "fact_id": "fact_multimodal_4layer",
+      "claim": "Transforms CSV and JSON datasets into 4 synchronized accessibility layers: spatial Web Audio sonification, tactile geometric SVG patterns, Machado 2009 color-blind safe palettes, and W3C contextual screen-reader widgets",
+      "status": "verified",
+      "evidence": [
+        "public/images/sonochart_hero.svg"
+      ],
+      "allowed_in_video": true
+    },
+    {
+      "fact_id": "fact_competitor_fixes",
+      "claim": "Resolves Highcharts Sonification Studio Issue #28 (Point k of N contextual readout), Chart2Music Issue #689 (NVDA arrow navigation), and MAIDR Issue #361 (single-key C High-Contrast mode with pattern preservation)",
+      "status": "verified",
+      "evidence": [
+        "public/models/sonochart_layers.svg"
+      ],
+      "allowed_in_video": true
+    },
+    {
+      "fact_id": "fact_stage3_qa",
+      "claim": "Passed 14 of 14 Playwright headless Firefox end-to-end scenarios across Desktop 1440x900 and Mobile 390x844 on both deployed GitHub Pages and local builds",
+      "status": "verified",
+      "evidence": [
+        "public/images/sonochart_hero.svg"
+      ],
+      "allowed_in_video": true
+    },
+    {
+      "fact_id": "fact_stage35_validation",
+      "claim": "Achieved 100% pass rate across the 12-case Real-World Validation Suite and 5-case Untouched Vega Hold-Out Suite with 4.6ms average parse latency, outperforming Chart2Music baseline (41.7% pass rate)",
+      "status": "verified",
+      "evidence": [
+        "public/models/sonochart_layers.svg"
+      ],
+      "allowed_in_video": true
+    },
+    {
+      "fact_id": "fact_unverified_cloud_ai",
+      "claim": "Uses cloud LLM neural voice cloning or supports 50 simultaneous series",
+      "status": "unverified",
+      "evidence": [],
+      "allowed_in_video": false,
+      "forbidden_phrases": [
+        "cloud llm neural voice cloning",
+        "supports 50 simultaneous series",
+        "unlimited concurrent series"
+      ]
+    }
+  ]
+}

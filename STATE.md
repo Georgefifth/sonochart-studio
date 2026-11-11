@@ -1,9 +1,9 @@
 # State
 
-- stage: 3.5
+- stage: 5
 - title: Code for Change — SonoChart Studio
 - theme: Candidate 1 — SonoChart Studio (Multi-Modal Accessible Data Visualization & Sonification Authoring Studio)
-- acceptance: Stage 3 QA complete (14/14 Playwright headless Firefox scenarios passed on both deployed https://georgefifth.github.io/sonochart-studio/ and local build; 2 P1 defects discovered and fixed with full regression evidence in `evidence/stage-3-qa/`). Entering Stage 3.5 (Real-World Dataset & Competitive Validation).
-- evidence: evidence/stage-1-research.md, evidence/stage-2-build.md, evidence/stage-3-qa/report.md, evidence/stage-3-qa/results.json
-- blockers: none
-- updated: 2026-11-11 21:42
+- acceptance: All 6 stages (1 Research, 2 Build & Deploy, 3 QA, 3.5 Real-World Validation, 4 Demo Video & Slides, 5 Submission Package) completed and verified with full evidence. Paused at final submission gate waiting for human to upload and click Submit on Devpost.
+- evidence: evidence/stage-1-research.md, evidence/stage-2-build.md, evidence/stage-3-qa/, evidence/stage-3.5-validation/, evidence/stage-4-demo/, evidence/stage-5-submission.md, submission/fields.md, submission/checklist.md, submission/assets/
+- blockers: Waiting for human to upload `submission/assets/demo.mp4` and `submission/assets/*.png`, paste `submission/fields.md` into https://code-for-change-global.devpost.com/, and click Submit (per AGENTS.md rule 2: human handles login, form filling, and submission).
+- updated: 2026-11-11 22:55
